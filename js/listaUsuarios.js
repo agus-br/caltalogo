@@ -137,11 +137,34 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("txtEmail").value=usuario.correo;
             document.getElementById("txtCorreoOriginal").value=usuario.correo;
             document.getElementById("txtTelefono").value=usuario.telefono;
+            localStorage.setItem("usuarios", JSON.stringify(usuario));
         }
         document.getElementById("txtNombre").focus();
         
     })
 });
+
+function editar(id) {
+    document.getElementById("mdlUpdate").addEventListener('shown.bs.modal', (e) => {
+        //document.getElementById("btnLimpiar").click();
+        //let operacion=e.relatedTarget.innerText;
+        
+        e.target.querySelector(".modal-title").innerText=Eliminar;
+
+        //Identificar si vamos editar para cargar los datos
+        if(operacion=='Editar'){
+            let correo=e.relatedTarget.value;
+            let usuarios=JSON.parse(localStorage.getItem('usuarios'));
+            let usuario=usuarios.find((element=>element.correo==correo));
+            document.getElementById("txtNombre").value=usuario.nombre;
+            document.getElementById("txtEmail").value=usuario.correo;
+            document.getElementById("txtCorreoOriginal").value=usuario.correo;
+            document.getElementById("txtTelefono").value=usuario.telefono;
+        }
+        document.getElementById("txtNombre").focus();
+        
+    })
+}
 
 function revisarControl(e, min, max) {
     txt = e.target;
@@ -178,9 +201,9 @@ function cargarTabla() {
         fila.appendChild(celda);
 
         celda = document.createElement("td");
-        celda.innerHTML = '<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#mdlUpdate" value="' + usuario.correo + '" onclick="editar(' + i + ')">Editar</button>'
-            + '<button type = "button" class="btn btn-warning"  data-bs-toggle="modal" data-bs-target="#mdlDelete" value = "' + usuario.correo + '" onclick = "editar(' + i + ')">Eliminar</button>'
-            + '<button type="button" class="btn btn btn-success" data-bs-toggle="modal" data-bs-target="#mdlResetPassword" value="' + usuario.correo + '" onclick="editar(' + i + ')">Restablecer contraseña</button>';
+        celda.innerHTML = '<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#mdlRegistro" value="' + usuario.correo + '" onclick="editar(' + i + ')">Editar</button>'
+            + '<button type = "button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#mdlDelete" value = "' + usuario.correo + '" onclick = "editar(' + i + ')">Eliminar</button>'
+            + '<button type="button" class="btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#mdlResetPassword" value="' + usuario.correo + '" onclick="eliminar(' + i + ')">Restablecer contraseña</button>';
         fila.appendChild(celda);
         tbody.appendChild(fila);
     }
