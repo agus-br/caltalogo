@@ -47,10 +47,13 @@ nav .dropdown-item:hover {
 
 main{
     min-height: calc(100vh - 11rem);
+    display: flex;
+    align-items: center;
 }
 
 footer{
     border-top: 5px solid var(--fondo);
+    
 }
 
 form.validado input:invalid, .novalido{
@@ -58,13 +61,13 @@ form.validado input:invalid, .novalido{
 }
 
 form.validado input:valid, .valido{
-    border-color: green;
+    border-color: limegreen;
 }
 
 form.validado input:invalid + div,
 .novalido + div{
     display: block;
-    color: red;
+    color: tomato;
 }
 
 form.validado input:valid + div,

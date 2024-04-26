@@ -42,7 +42,8 @@
             </li>
           </ul>
           <form class="d-flex col-4" action="index.html">
-            <button class="btn btn-light ms-auto" type="submit"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+            <button class="btn btn-light ms-auto" type="submit"><i class="fa-solid fa-right-from-bracket"></i>
+              Salir</button>
           </form>
         </div>
       </div>
@@ -50,6 +51,7 @@
   </header>
   <main>
     <div class="container">
+
       <div class="modal" tabindex="-1" id="mdlRegistro" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -61,34 +63,32 @@
               <form id="frmRegistro" novalidate>
                 <div>
                   <label for="txtNombre">Nombre completo</label>
-                  <input type="text" class="form-control" id="txtNombre" required
-                  minlength="2" maxlength="60">
+                  <input type="text" class="form-control" id="txtNombre" required minlength="2" maxlength="60">
                   <div>El nombre es obligatorio (entre 2 y 60 caracteres)</div>
-                </div> 
-                  
+                </div>
+
                 <div>
                   <label for="txtEmail">Correo</label>
                   <input type="email" class="form-control" id="txtEmail" required>
                   <input type="hidden" id="txtCorreoOriginal">
                   <div>El email es obligatorio y debe tener un formato válido</div>
-                </div> 
+                </div>
                 <div>
                   <label for="txtPassword">Contraseña</label>
-                  <input type="password" class="form-control" id="txtPassword" 
-                  minlength="6" maxlength="20" required>
+                  <input type="password" class="form-control" id="txtPassword" minlength="6" maxlength="20" required>
                   <div>La contraseña es obligatoria (entre 6 y 20 caracteres)</div>
-                </div> 
+                </div>
                 <div>
                   <label for="txtConfirmarPassword">Confirmar contraseña</label>
-                  <input type="password" class="form-control" id="txtConfirmarPassword" 
-                   minlength="6" maxlength="20" required>
-                   <div>La contraseña es obligatoria y deben coincidir</div>
-                </div> 
+                  <input type="password" class="form-control" id="txtConfirmarPassword" minlength="6" maxlength="20"
+                    required>
+                  <div>La contraseña es obligatoria y deben coincidir</div>
+                </div>
                 <div>
                   <label for="txtTelefono">Teléfono</label>
                   <input type="tel" class="form-control" id="txtTelefono" minlength="10" maxlength="10">
                   <div>El teléfono debe tener 10 dígitos</div>
-                </div> 
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -99,10 +99,96 @@
         </div>
       </div>
 
-      
+      <div class="modal" tabindex="-1" id="mdlUpdate" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="frmRegistro" novalidate>
+                <div>
+                  <label for="txtNombre">Nombre completo</label>
+                  <input type="text" class="form-control" id="txtNombre" required minlength="2" maxlength="60">
+                  <div>El nombre es obligatorio (entre 2 y 60 caracteres)</div>
+                </div>
+                <div>
+                  <label for="txtEmail">Correo</label>
+                  <input type="email" class="form-control" id="txtEmail" required>
+                  <input type="hidden" id="txtCorreoOriginal">
+                  <div>El email es obligatorio y debe tener un formato válido</div>
+                </div>
+                <div>
+                  <label for="txtTelefono">Teléfono</label>
+                  <input type="tel" class="form-control" id="txtTelefono" minlength="10" maxlength="10">
+                  <div>El teléfono debe tener 10 dígitos</div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btnAceptar" form="frmRegistro">Aceptar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmRegistro">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" tabindex="-1" id="mdlDelete" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="frmRegistro" novalidate>
+                <div>
+                  <div>Hola, esto es donde se pregunta lo de eliminar</div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btnAceptar" form="frmRegistro">Aceptar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmRegistro">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" tabindex="-1" id="mdlResetPassword" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="frmRegistro" novalidate>
+                <div>
+                  <label for="txtPassword">Contraseña</label>
+                  <input type="password" class="form-control" id="txtPassword" minlength="6" maxlength="20" required>
+                  <div>La contraseña es obligatoria (entre 6 y 20 caracteres)</div>
+                </div>
+                <div>
+                  <label for="txtConfirmarPassword">Confirmar contraseña</label>
+                  <input type="password" class="form-control" id="txtConfirmarPassword" minlength="6" maxlength="20" required>
+                  <div>La contraseña es obligatoria y deben coincidir</div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" id="btnAceptar" form="frmRegistro">Aceptar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmRegistro">Limpiar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div>
-        <button type="button" class="btn btn-primary" id="btnAgregar" data-bs-toggle="modal" data-bs-target="#mdlRegistro">Agregar</button>
-      </div>  
+        <button type="button" class="btn btn-primary" id="btnAgregar" data-bs-toggle="modal"
+          data-bs-target="#mdlRegistro">Agregar</button>
+      </div>
       <table id="tblUsuarios" class="table table-striped">
         <thead>
           <tr>
@@ -114,7 +200,7 @@
         </thead>
         <tbody>
         </tbody>
-      </table> 
+      </table>
     </div>
   </main>
   <!-- FOOTER -->
