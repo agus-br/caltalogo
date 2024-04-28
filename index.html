@@ -67,10 +67,10 @@
                   <div>El nombre es obligatorio (entre 2 y 60 caracteres)</div>
                 </div>
 
+                <!-- <input type="hidden" id="txtCorreoOriginal"> -->
                 <div>
                   <label for="txtEmail">Correo</label>
                   <input type="email" class="form-control" id="txtEmail" required>
-                  <input type="hidden" id="txtCorreoOriginal">
                   <div>El email es obligatorio y debe tener un formato válido</div>
                 </div>
                 <div>
@@ -98,7 +98,8 @@
           </div>
         </div>
       </div>
-      <!--
+
+      
       <div class="modal" tabindex="-1" id="mdlUpdate" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -107,33 +108,35 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="frmRegistro" novalidate>
+              <form id="frmUpdate" novalidate>
                 <div>
-                  <label for="txtNombre">Nombre completo</label>
-                  <input type="text" class="form-control" id="txtNombre" required minlength="2" maxlength="60">
+                  <label for="txtNombreUpdate">Nombre completo</label>
+                  <input type="text" class="form-control" id="txtNombreUpdate" required minlength="2" maxlength="60">
                   <div>El nombre es obligatorio (entre 2 y 60 caracteres)</div>
                 </div>
+
+                <input type="hidden" id="txtCorreoOriginal">
                 <div>
-                  <label for="txtEmail">Correo</label>
-                  <input type="email" class="form-control" id="txtEmail" required>
-                  <input type="hidden" id="txtCorreoOriginal">
+                  <label for="txtEmailUpdate">Correo</label>
+                  <input type="email" class="form-control" id="txtEmailUpdate" required>
                   <div>El email es obligatorio y debe tener un formato válido</div>
                 </div>
                 <div>
-                  <label for="txtTelefono">Teléfono</label>
-                  <input type="tel" class="form-control" id="txtTelefono" minlength="10" maxlength="10">
+                  <label for="txtTelefonoUpdate">Teléfono</label>
+                  <input type="tel" class="form-control" id="txtTelefonoUpdate" minlength="10" maxlength="10">
                   <div>El teléfono debe tener 10 dígitos</div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="btnAceptar" form="frmRegistro">Aceptar</button>
-              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmRegistro">Limpiar</button>
+              <button type="submit" class="btn btn-primary" id="btnActualizar" form="frmUpdate">Aceptar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiarUpdate" form="frmUpdate">Limpiar</button>
             </div>
           </div>
         </div>
       </div>
 
+      
       <div class="modal" tabindex="-1" id="mdlDelete" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -142,20 +145,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="frmRegistro" novalidate>
-                <div>
-                  <div>Hola, esto es donde se pregunta lo de eliminar</div>
+              <form id="frmDelete">
+                <div >
+                  <p id="showUser"></p>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" id="btnAceptar" form="frmRegistro">Aceptar</button>
-              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmRegistro">Limpiar</button>
+              <button type="submit" class="btn btn-danger" id="btnEliminar" form="frmDelete">Eliminar</button>
             </div>
           </div>
         </div>
       </div>
-
+<!--
       <div class="modal" tabindex="-1" id="mdlResetPassword" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
