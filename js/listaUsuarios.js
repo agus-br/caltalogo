@@ -6,14 +6,39 @@ document.addEventListener("DOMContentLoaded", () => { //Se ejecuta cuando el DOM
 
     document.getElementById("txtNombre").onkeyup = e => revisarControl(e.target, 2, 60, "Campo no valido"); //Funcion anonima que manda llamar otra función
     document.getElementById("txtTelefono").onkeyup = e => { //onkeyup = evento que suelta la tecla que yo este presionando
-        if (e.target.value.trim().length > 0) //trim = Borra espacios en blanco al inicio y al final.
-            revisarControl(e.target, 10, 10, "Campo no valido");
+        validarTelefono(e.target);
     }
     document.getElementById("txtPassword").onkeyup = e => {
         revisarControl(e.target, 6, 20, "Campo no valido");
     }
     document.getElementById("txtConfirmarPassword").onkeyup = e => {
-        revisarControl(e.target, 6, 20, "Campo no valido");
+        if (document.getElementById("txtPassword").value.length > 6) {
+            validarContrasenias(document.getElementById("txtPassword"), e.target)
+        } else {
+            revisarControl(e.target, 6, 20, "Campo no valido");
+        }
+    }
+    document.getElementById("txtNombreUpdate").onkeyup = e => {
+        revisarControl(e.target, 2, 60, "El nombre debe tener entre 2 y 60 caracteres.");
+    }
+    document.getElementById("txtEmail").onkeyup = e => {
+        validarCorreo(e.target);
+    }
+    document.getElementById("txtEmailUpdate").onkeyup = e => {
+        validarCorreo(e.target);
+    }
+    document.getElementById("txtTelefonoUpdate").onkeyup = e => { //onkeyup = evento que suelta la tecla que yo este presionando
+        validarTelefono(e.target);
+    }
+    document.getElementById("txtResetPass").onkeyup = e => {
+        revisarControl(e.target, 6, 20, "El campo es obligatorio y debe tener entre 6 y 20 caracteres");
+    }
+    document.getElementById("txtResetPass2").onkeyup = e => {
+        if (document.getElementById("txtResetPass").value.length > 6) {
+            validarContrasenias(document.getElementById("txtResetPass"), e.target)
+        } else {
+            revisarControl(e.target, 6, 20, "La contraseñá debe ser obligatoria y tener entre 6 y 20 caracteres");
+        }
     }
 
     document.getElementById("btnLimpiar").addEventListener("click", e => {
@@ -228,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => { //Se ejecuta cuando el DOM
         }
         //Agregar la clase validado al formulario padre del boton que desencadeno el click
         e.target.form.classList.add("validado");
-
         
         let txtContrasenia = document.getElementById("txtResetPass");
         let txtContrasenia2 = document.getElementById("txtResetPass2");
@@ -308,7 +332,7 @@ function validarContrasenias(control1, control2) {
     control2.classList.remove("valido"); //
     control2.classList.remove("novalido");
     //Manera visual de ver que el usuario metio los datos incorrectos
-    if (control1.value.trim() !== control2.value.trim) {
+    if (control1.value.trim() !== control2.value.trim()) {
         control2.setCustomValidity("Las contraseñas no coinciden.");
         //txt.setCustomValidity("Campo no válido");
         control2.classList.add("novalido");
@@ -357,7 +381,7 @@ function cargarTabla() {
         fila.appendChild(celda);
 
         celda = document.createElement("td");
-        celda.innerHTML ='<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#mdlDelete" value="' + usuario.correo + '">Eliminar</button>';
+        celda.innerHTML ='<button type="button" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#mdlDelete" value="' + usuario.correo + '">Eliminar</button>';
         fila.appendChild(celda);
 
         celda = document.createElement("td");

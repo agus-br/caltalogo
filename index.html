@@ -130,7 +130,7 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" id="btnActualizar" form="frmUpdate">Aceptar</button>
-              <button type="reset" class="btn btn-warning" id="btnLimpiarUpdate" form="frmUpdate">Limpiar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmUpdate">Limpiar</button>
             </div>
           </div>
         </div>
@@ -167,8 +167,8 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <input type="text" hidden id="userEmailReset">
               <form id="frmResetPassword" novalidate>
-                <input type="text" hidden id="userEmailReset">
                 <div>
                   <label for="txtResetPass">Contraseña</label>
                   <input type="password" class="form-control" id="txtResetPass" minlength="6" maxlength="20" required>
@@ -184,7 +184,7 @@
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" id="btnRestablecer" form="frmResetPassword">Reestablecer</button>
-              <button type="reset" class="btn btn-warning" id="btnRestablecerLimpiar" form="frmResetPassword">Limpiar</button>
+              <button type="reset" class="btn btn-warning" id="btnLimpiar" form="frmResetPassword">Limpiar</button>
             </div>
           </div>
         </div>
