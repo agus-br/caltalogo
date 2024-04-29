@@ -97,22 +97,22 @@ document.addEventListener("DOMContentLoaded", () => { //Se ejecuta cuando el DOM
 
     document.getElementById("mdlUpdate").addEventListener('shown.bs.modal', (e) => {
         document.getElementById("btnLimpiar").click();
-        e.target.querySelector("#mdlUpdate .modal-title").innerText="Editar";
+        e.target.querySelector("#mdlUpdate .modal-title").innerText = "Editar";
 
         //Identificar si vamos editar para cargar los datos
         let correo = e.relatedTarget.value;
-        let usuarios=JSON.parse(localStorage.getItem('usuarios'));
+        let usuarios = JSON.parse(localStorage.getItem('usuarios'));
         let usuario = usuarios.find((element => element.correo == correo));
         
         //console.log(usuario)
-        document.getElementById("txtNombreUpdate").value=usuario.nombre;
-        document.getElementById("txtEmailUpdate").value=usuario.correo;
+        document.getElementById("txtNombreUpdate").value = usuario.nombre;
+        document.getElementById("txtEmailUpdate").value = usuario.correo;
         document.getElementById("txtCorreoOriginal").value = usuario.correo;
         document.getElementById("txtTelefonoUpdate").value = usuario.telefono;
         
         document.getElementById("txtNombreUpdate").focus();
         
-    })
+    });
 
     document.getElementById("btnActualizar").addEventListener("click", e => {
         //document.getElementById("msgDuplicado").classList.remove("show");
@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => { //Se ejecuta cuando el DOM
         let correo = e.relatedTarget.value;
         let usuarios = JSON.parse(localStorage.getItem('usuarios'));
         let usuario = usuarios.find((element => element.correo == correo));
+        document.getElementById("userEmail").value = correo;
         //console.log(usuario)
         document.getElementById("showUser").innerText = "Esta seguro de eliminar al usuario: " + usuario.nombre;
         /*document.getElementById("showUser").innerHTML  = "<div>Esta seguro de eliminar al usuario: " + usuario.nombre + "</div>";*/
@@ -194,15 +195,74 @@ document.addEventListener("DOMContentLoaded", () => { //Se ejecuta cuando el DOM
 
     document.getElementById("btnEliminar").addEventListener("click", e => {
         //Agregar la clase validado al formulario padre del boton que desencadeno el click
+         let delteUserEmail = document.getElementById("userEmail").value.trim();
+        
+        console.log(delteUserEmail);
+        let usuarios = JSON.parse(localStorage.getItem('usuarios'));
+        //Recuperamos el usuario que queramos eliminar
+        let usuario = usuarios.findIndex((element => element.correo == delteUserEmail));
+
+        usuarios.splice(usuario,1);
+        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    });
+
+    document.getElementById("mdlResetPassword").addEventListener('shown.bs.modal', (e) => {
+        //document.getElementById("btnLimpiar").click();
+        e.target.querySelector("#mdlResetPassword .modal-title").innerText = "Restablecer contraseña";
+        let correo = e.relatedTarget.value;
+        let usuarios = JSON.parse(localStorage.getItem('usuarios'));
+        let usuario = usuarios.find((element => element.correo == correo));
+        document.getElementById("userEmailReset").value = correo;
+        //Identificar si vamos editar para cargar los datos
+        //let correo = e.relatedTarget.value;
+        //let usuarios=JSON.parse(localStorage.getItem('usuarios'));
+        //let usuario = usuarios.find((element => element.correo == correo));
+    });
+
+    document.getElementById("btnRestablecer").addEventListener("click", e => {
+        //document.getElementById("msgDuplicado").classList.remove("show");
+        //debugger;
+        let alert = e.target.parentElement.querySelector("#mdlResetPassword .alert");
+        if (alert) {
+            alert.remove();
+        }
+        //Agregar la clase validado al formulario padre del boton que desencadeno el click
         e.target.form.classList.add("validado");
 
-        let delteUserEmail = e.target.value.trim();
         
-        console.log(e.target.value)
-        e.preventDefault();
-        return;
-        localStorage.removeItem(delteUserEmail);
+        let txtContrasenia = document.getElementById("txtResetPass");
+        let txtContrasenia2 = document.getElementById("txtResetPass2");
+        
+        //revisarControl(txtNombre, 2, 60, "El nombre es obligatorio (entre 2 y 60 caracteres)");
+        revisarControl(txtContrasenia, 2, 60, "La contraseña es obligatoria (entre 2 y 60 caracteres)");
+        //validarCorreo(txtEmail);
+        validarContrasenias(txtContrasenia, txtContrasenia2);
+        //validarTelefono(txtTel);
+        //txtEmail.setCustomValidity("");
+        if (e.target.form.checkValidity()) {
+            //Crear el objeto usuario y guardarlo en el storage
+            let usuarios = JSON.parse(localStorage.getItem("usuarios"));
+            let correo = document.getElementById("userEmailReset").value;
+            
+            let indiceUsuario = usuarios.findIndex(usuario => usuario.correo === correo);
+            //console.log(usuarios);
+            let usuario = {
+                nombre: usuarios[indiceUsuario].nombre,
+                correo: usuarios[indiceUsuario].correo,
+                contrasenia: txtContrasenia.value.trim(),
+                telefono: usuarios[indiceUsuario].telefono
+            }; 
+            usuarios[indiceUsuario] = usuario;
+            //console.log(usuarios);
+            // Guarda el array actualizado en el localStorage
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            //console
+        } else {
+            console.log("Error de validación");
+            e.preventDefault();
+        }  
     });
+
 
 });
 
@@ -248,7 +308,7 @@ function validarContrasenias(control1, control2) {
     control2.classList.remove("valido"); //
     control2.classList.remove("novalido");
     //Manera visual de ver que el usuario metio los datos incorrectos
-    if (control1.value.trim() === control2.value.trim) {
+    if (control1.value.trim() !== control2.value.trim) {
         control2.setCustomValidity("Las contraseñas no coinciden.");
         //txt.setCustomValidity("Campo no válido");
         control2.classList.add("novalido");
